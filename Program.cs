@@ -1,30 +1,47 @@
-﻿int x1 = ReadInt("Введите X первой точки");
-int y1 = ReadInt("Введите Y первой точки");
-int z1 = ReadInt("Введите Z первой точки");
+﻿int x = ReadInt("Введите число X ");
 
-int x2 = ReadInt("Введите X второй точки");
-int y2 = ReadInt("Введите Y второй точки");
-int z2 = ReadInt("Введите Z второй точки");
-
-Console.WriteLine($"Расстояние между точкой 1 и точкой 2 = {GetLine(x1, y1, z1, x2, y2, z2)}");
-
+System.Console.WriteLine(string.Join("  ", Cube(x)));
 
 int ReadInt(string argument)
 {
-	Console.Write($"Input {argument}: ");
+	Console.Write(argument);
 
 	int i;
 
+
 	while (!int.TryParse(Console.ReadLine(), out i))
 	{
-		Console.WriteLine("It's not a number");
+		Console.WriteLine("Это не число! ");
+        Console.Write(argument);
 	}
-
-	return i;
+    return i;
 }
 
-double GetLine(int x1, int y1, int z1, int x2, int y2, int z2)
-{
-	double Line = Math.Sqrt((Math.Pow(x1-x2, 2) + Math.Pow(y1-y2, 2) + Math.Pow(z1-z2, 2)));
-    return Line;
+int [] Cube(int x)
+{   if (x < 0)
+    {   
+        x = -x; 
+        int [] T = new int [x + 2];
+        for (int i = 0; i < x + 2; i++)
+        {
+            T[i] = (int)Math.Pow(1-i, 3); 
+        }
+        return T;
+    }
+    else if (x == 0)
+    {    
+        int [] T = new int [x + 2];
+        for (int i = 0; i < x + 2; i++)
+        {
+            T[i] = (int)Math.Pow(1-i, 3);  
+        }
+        return T;
+    }
+
+    int [] S = new int [x];
+    for (int i = 0; i < x; i++)
+    {
+       S[i] = (int)Math.Pow(i+1, 3); 
+    }
+    return S;
 }
