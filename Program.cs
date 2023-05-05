@@ -1,13 +1,6 @@
-﻿int x = ReadInt("Введите число - ");
+﻿int x = ReadInt("Введите число X ");
 
-if (IsPalindrome(M(x)))
-{
-    System.Console.WriteLine("Палиндром");
-}
-else
-{
-    System.Console.WriteLine("Не Палиндром");
-}
+System.Console.WriteLine(string.Join("  ", Cube(x)));
 
 int ReadInt(string argument)
 {
@@ -15,42 +8,40 @@ int ReadInt(string argument)
 
 	int i;
 
+
 	while (!int.TryParse(Console.ReadLine(), out i))
 	{
-        Console.WriteLine("Это не число!");
+		Console.WriteLine("Это не число! ");
         Console.Write(argument);
-        
 	}
-
-	return i;
+    return i;
 }
 
-int [] M(int x)
-{
-    string str = x.ToString();
-    int [] S = new int [str.Length];
-    for (int i = 0; i < str.Length; i++)
+int [] Cube(int x)
+{   if (x < 0)
+    {   
+        x = -x; 
+        int [] T = new int [x + 2];
+        for (int i = 0; i < x + 2; i++)
+        {
+            T[i] = (int)Math.Pow(1-i, 3); 
+        }
+        return T;
+    }
+    else if (x == 0)
+    {    
+        int [] T = new int [x + 2];
+        for (int i = 0; i < x + 2; i++)
+        {
+            T[i] = (int)Math.Pow(1-i, 3);  
+        }
+        return T;
+    }
+
+    int [] S = new int [x];
+    for (int i = 0; i < x; i++)
     {
-       S[i] = int.Parse(str[i].ToString()); 
+       S[i] = (int)Math.Pow(i+1, 3); 
     }
     return S;
-}
-
-bool IsPalindrome(int [] S)
-{  
-    int i = 0;
-    int k = S.Length - 1;
-    while (i < k)
-    {
-        if (S[i] == S[k])
-        {
-            i++;
-            k--;
-        }
-        else
-        {
-            return false;
-        }
-    }
-return true;
 }
